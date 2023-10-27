@@ -38,6 +38,8 @@
       this.button2 = new System.Windows.Forms.Button();
       this.button3 = new System.Windows.Forms.Button();
       this.button4 = new System.Windows.Forms.Button();
+      this.radioButton1 = new System.Windows.Forms.RadioButton();
+      this.radioButton2 = new System.Windows.Forms.RadioButton();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.panel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -80,9 +82,9 @@
       this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.checkBox2.Location = new System.Drawing.Point(24, 54);
       this.checkBox2.Name = "checkBox2";
-      this.checkBox2.Size = new System.Drawing.Size(113, 24);
+      this.checkBox2.Size = new System.Drawing.Size(229, 24);
       this.checkBox2.TabIndex = 2;
-      this.checkBox2.Text = "checkBox2";
+      this.checkBox2.Text = "Сортировка Вставками";
       this.checkBox2.UseVisualStyleBackColor = true;
       // 
       // checkBox3
@@ -91,9 +93,9 @@
       this.checkBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.checkBox3.Location = new System.Drawing.Point(24, 96);
       this.checkBox3.Name = "checkBox3";
-      this.checkBox3.Size = new System.Drawing.Size(113, 24);
+      this.checkBox3.Size = new System.Drawing.Size(230, 24);
       this.checkBox3.TabIndex = 3;
-      this.checkBox3.Text = "checkBox3";
+      this.checkBox3.Text = "Шейкерная Сортировка";
       this.checkBox3.UseVisualStyleBackColor = true;
       // 
       // checkBox4
@@ -102,9 +104,9 @@
       this.checkBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.checkBox4.Location = new System.Drawing.Point(24, 137);
       this.checkBox4.Name = "checkBox4";
-      this.checkBox4.Size = new System.Drawing.Size(113, 24);
+      this.checkBox4.Size = new System.Drawing.Size(210, 24);
       this.checkBox4.TabIndex = 4;
-      this.checkBox4.Text = "checkBox4";
+      this.checkBox4.Text = "Быстрая Сортировка";
       this.checkBox4.UseVisualStyleBackColor = true;
       // 
       // checkBox5
@@ -113,9 +115,9 @@
       this.checkBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       this.checkBox5.Location = new System.Drawing.Point(24, 177);
       this.checkBox5.Name = "checkBox5";
-      this.checkBox5.Size = new System.Drawing.Size(113, 24);
+      this.checkBox5.Size = new System.Drawing.Size(280, 24);
       this.checkBox5.TabIndex = 5;
-      this.checkBox5.Text = "checkBox5";
+      this.checkBox5.Text = "Случайная (Bogo) сортировка";
       this.checkBox5.UseVisualStyleBackColor = true;
       // 
       // panel1
@@ -126,15 +128,15 @@
       this.panel1.Controls.Add(this.checkBox2);
       this.panel1.Controls.Add(this.checkBox4);
       this.panel1.Controls.Add(this.checkBox3);
-      this.panel1.Location = new System.Drawing.Point(707, 46);
+      this.panel1.Location = new System.Drawing.Point(995, 46);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(265, 234);
+      this.panel1.Size = new System.Drawing.Size(381, 234);
       this.panel1.TabIndex = 6;
       // 
       // button1
       // 
       this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-      this.button1.Location = new System.Drawing.Point(831, 325);
+      this.button1.Location = new System.Drawing.Point(872, 332);
       this.button1.Name = "button1";
       this.button1.Size = new System.Drawing.Size(415, 90);
       this.button1.TabIndex = 7;
@@ -194,19 +196,45 @@
       // 
       // button4
       // 
-      this.button4.Location = new System.Drawing.Point(1109, 100);
+      this.button4.Location = new System.Drawing.Point(1104, 13);
       this.button4.Name = "button4";
-      this.button4.Size = new System.Drawing.Size(75, 23);
+      this.button4.Size = new System.Drawing.Size(272, 27);
       this.button4.TabIndex = 12;
-      this.button4.Text = "button4";
+      this.button4.Text = "Очистить таблицу для вывода";
       this.button4.UseVisualStyleBackColor = true;
       this.button4.Click += new System.EventHandler(this.button4_Click);
+      // 
+      // radioButton1
+      // 
+      this.radioButton1.AutoSize = true;
+      this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.radioButton1.Location = new System.Drawing.Point(743, 61);
+      this.radioButton1.Name = "radioButton1";
+      this.radioButton1.Size = new System.Drawing.Size(208, 24);
+      this.radioButton1.TabIndex = 13;
+      this.radioButton1.TabStop = true;
+      this.radioButton1.Text = "Обычная сортировка";
+      this.radioButton1.UseVisualStyleBackColor = true;
+      // 
+      // radioButton2
+      // 
+      this.radioButton2.AutoSize = true;
+      this.radioButton2.Font = new System.Drawing.Font("Microsoft Tai Le", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+      this.radioButton2.Location = new System.Drawing.Point(743, 103);
+      this.radioButton2.Name = "radioButton2";
+      this.radioButton2.Size = new System.Drawing.Size(196, 23);
+      this.radioButton2.TabIndex = 14;
+      this.radioButton2.TabStop = true;
+      this.radioButton2.Text = "Обратная сортировка";
+      this.radioButton2.UseVisualStyleBackColor = true;
       // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1388, 701);
+      this.Controls.Add(this.radioButton2);
+      this.Controls.Add(this.radioButton1);
       this.Controls.Add(this.button4);
       this.Controls.Add(this.button3);
       this.Controls.Add(this.button2);
@@ -216,7 +244,7 @@
       this.Controls.Add(this.panel1);
       this.Controls.Add(this.dataGridView1);
       this.Name = "Form1";
-      this.Text = "Form1";
+      this.Text = "Sort";
       this.Load += new System.EventHandler(this.Form1_Load);
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
       this.panel1.ResumeLayout(false);
@@ -244,6 +272,8 @@
     private System.Windows.Forms.Button button2;
     private System.Windows.Forms.Button button3;
     private System.Windows.Forms.Button button4;
+    private System.Windows.Forms.RadioButton radioButton1;
+    private System.Windows.Forms.RadioButton radioButton2;
   }
 }
 

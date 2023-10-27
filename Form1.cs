@@ -24,6 +24,7 @@ namespace sem2_lab4 {
 
       dataGridView2.AllowUserToAddRows = false;
 
+      radioButton1.Checked = true;
       label1.Text = string.Empty;
     }
 
@@ -34,14 +35,94 @@ namespace sem2_lab4 {
     }
 
     private void button1_Click(object sender, EventArgs e) {
-      ReadDataGrid();
+      try {
+        ReadDataGrid();
+      } catch(Exception ex) { 
+        label1.Text = ex.Message + "\n\n";
 
-      if (checkBox1.Checked) {
-        double?[,] arrBubble = SortMethods.BubbleSort(arr);
+        return;
+      }
 
-        WriteToGrid(arrBubble);
+      if (radioButton1.Checked) {
+        if (checkBox1.Checked) {
+          double?[,] arrBubble = SortMethods.BubbleSort(arr);
 
-        label1.Text += $"Время выполнения библа: {SortMethods.timeExecution[0]}\n\n";
+          WriteToGrid(arrBubble);
+
+          label1.Text = $"Время выполнения библа: {SortMethods.timeExecution[0]}\n";
+        }
+
+        if (checkBox2.Checked) {
+          double?[,] arrPast = SortMethods.PastSort(arr);
+
+          WriteToGrid(arrPast);
+
+          label1.Text += $"Время выполнения сортировки вставками: {SortMethods.timeExecution[1]}\n";
+        }
+
+        if (checkBox3.Checked) {
+          double?[,] arrShaker = SortMethods.ShakerSort(arr);
+
+          WriteToGrid(arrShaker);
+
+          label1.Text += $"Время выполнения шейкерной сортировки: {SortMethods.timeExecution[2]}\n";
+        }
+
+        if (checkBox4.Checked) {
+          double?[,] arrQuick = SortMethods.QuickSort(arr);
+
+          WriteToGrid(arrQuick);
+
+          label1.Text += $"Время выполнения быстрой сортировки: {SortMethods.timeExecution[3]}\n";
+        }
+
+        if (checkBox5.Checked) {
+          double?[,] arrBogo = SortMethods.BogoSort(arr);
+
+          WriteToGrid(arrBogo);
+
+          label1.Text += $"Время выполнения случайной (bogo) сортировки: {SortMethods.timeExecution[4]}\n";
+        }
+      } else {
+        if (checkBox1.Checked) {
+          double?[,] arrBubble = SortMethods.BubbleSortRev(arr);
+
+          WriteToGrid(arrBubble);
+
+          label1.Text = $"Время выполнения библа: {SortMethods.timeExecution[0]}\n";
+        }
+
+        if (checkBox2.Checked) {
+          double?[,] arrPast = SortMethods.PastSortRev(arr);
+
+          WriteToGrid(arrPast);
+
+          label1.Text += $"Время выполнения сортировки вставками: {SortMethods.timeExecution[1]}\n";
+        }
+
+        if (checkBox3.Checked) {
+          double?[,] arrShaker = SortMethods.ShakerSortRev(arr);
+
+          WriteToGrid(arrShaker);
+
+          label1.Text += $"Время выполнения шейкерной сортировки: {SortMethods.timeExecution[2]}\n";
+        }
+
+        if (checkBox4.Checked) {
+          double?[,] arrQuick = SortMethods.QuickSortRev(arr);
+
+          WriteToGrid(arrQuick);
+
+          label1.Text += $"Время выполнения быстрой сортировки: {SortMethods.timeExecution[3]}\n";
+        }
+
+        if (checkBox5.Checked) {
+          double?[,] arrBogo = SortMethods.BogoSortRev(arr);
+
+          WriteToGrid(arrBogo);
+
+          label1.Text += $"Время выполнения случайной (bogo) сортировки: {SortMethods.timeExecution[4]}\n";
+        }
       }
     }
 
@@ -68,7 +149,11 @@ namespace sem2_lab4 {
         }
       }
 
-      arr = new double?[rowCountList.Max(), columnCount];
+      try {
+        arr = new double?[rowCountList.Max(), columnCount];
+      } catch {
+        throw new Exception("Таблица пустая !!! Нечего сортировать !!!");
+      }
 
       int indexColumnArr = 0, indexRowArr = 0;
 
