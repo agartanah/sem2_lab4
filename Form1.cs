@@ -206,7 +206,11 @@ namespace sem2_lab4 {
     }
 
     private void button3_Click(object sender, EventArgs e) {
-      dataGridView1.Columns.RemoveAt(countColumn - 1);
+      try {
+        dataGridView1.Columns.RemoveAt(countColumn - 1);
+      } catch {
+        return;
+      }
 
       --countColumn;
 
