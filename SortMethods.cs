@@ -9,9 +9,12 @@ using System.Windows.Forms;
 namespace sem2_lab4 {
   public static class SortMethods {
     public static TimeSpan[] timeExecution = new TimeSpan[5];
+    public static long[] iters = new long[5];
+    public static int countValue;
 
     public static double?[,] BubbleSort(double?[,] arr) {
       double?[] arrForSort = GlueArr(arr);
+      iters[0] = 0;
 
       var stopWatch = new Stopwatch();
 
@@ -25,6 +28,8 @@ namespace sem2_lab4 {
             arrForSort[indexRow] = arrForSort[indexColumn];
             arrForSort[indexColumn] = temp;
           }
+
+          ++iters[0];
         }
       }
 
@@ -37,6 +42,7 @@ namespace sem2_lab4 {
 
     public static double?[,] BubbleSortRev(double?[,] arr) {
       double?[] arrForSort = GlueArr(arr);
+      iters[0] = 0;
 
       var stopWatch = new Stopwatch();
 
@@ -50,6 +56,8 @@ namespace sem2_lab4 {
             arrForSort[indexRow] = arrForSort[indexColumn];
             arrForSort[indexColumn] = temp;
           }
+
+          ++iters[0];
         }
       }
 
@@ -64,6 +72,7 @@ namespace sem2_lab4 {
 
     public static double?[,] PastSort(double?[,] arr) {
       double?[] arrForSort = GlueArr(arr);
+      iters[1] = 0;
 
       var stopWatch = new Stopwatch();
 
@@ -77,6 +86,8 @@ namespace sem2_lab4 {
           arrForSort[prevElement + 1] = arrForSort[prevElement];
           arrForSort[prevElement] = currElement;
           --prevElement;
+
+          ++iters[1];
         }
       }
 
@@ -89,6 +100,7 @@ namespace sem2_lab4 {
 
     public static double?[,] PastSortRev(double?[,] arr) {
       double?[] arrForSort = GlueArr(arr);
+      iters[1] = 0;
 
       var stopWatch = new Stopwatch();
 
@@ -102,6 +114,8 @@ namespace sem2_lab4 {
           arrForSort[prevElement + 1] = arrForSort[prevElement];
           arrForSort[prevElement] = currElement;
           --prevElement;
+
+          ++iters[1];
         }
       }
 
@@ -116,13 +130,14 @@ namespace sem2_lab4 {
 
     public static double?[,] ShakerSort(double?[,] arr) {
       double?[] arrForSort = GlueArr(arr);
+      iters[2] = 0;
 
       var stopWatch = new Stopwatch();
 
       stopWatch.Start();
 
       int leftBorder = 0;
-      int rightBorder = arr.Length - 1;
+      int rightBorder = arrForSort.Length - 1;
       bool exchange;
 
       do {
@@ -131,8 +146,12 @@ namespace sem2_lab4 {
         BubbleForShaker(ref arrForSort, leftBorder, rightBorder, ref exchange);
         --rightBorder;
 
+        exchange = false;
+
         BubbleForShaker(ref arrForSort, rightBorder, leftBorder, ref exchange);
         ++leftBorder;
+
+        ++iters[2];
       } while (exchange);
 
       stopWatch.Stop();
@@ -144,13 +163,14 @@ namespace sem2_lab4 {
 
     public static double?[,] ShakerSortRev(double?[,] arr) {
       double?[] arrForSort = GlueArr(arr);
+      iters[2] = 0;
 
       var stopWatch = new Stopwatch();
 
       stopWatch.Start();
 
       int leftBorder = 0;
-      int rightBorder = arr.Length - 1;
+      int rightBorder = arrForSort.Length - 1;
       bool exchange;
 
       do {
@@ -158,6 +178,8 @@ namespace sem2_lab4 {
 
         BubbleForShaker(ref arrForSort, leftBorder, rightBorder, ref exchange);
         --rightBorder;
+
+        exchange = false;
 
         BubbleForShaker(ref arrForSort, rightBorder, leftBorder, ref exchange);
         ++leftBorder;
@@ -185,6 +207,8 @@ namespace sem2_lab4 {
             b[i + 1] = temp;
             exchange = true;
           }
+
+          ++iters[2];
         }
       } else {
         for (int i = n; i > m; i--) {
@@ -194,6 +218,8 @@ namespace sem2_lab4 {
             b[i - 1] = temp;
             exchange = true;
           }
+
+          ++iters[2];
         }
       }
       return;
@@ -201,6 +227,7 @@ namespace sem2_lab4 {
 
     public static double?[,] QuickSort(double?[,] arr) {
       double?[] arrForSort = GlueArr(arr);
+      iters[3] = 0;
 
       var stopWatch = new Stopwatch();
 
@@ -220,6 +247,7 @@ namespace sem2_lab4 {
 
     public static double?[,] QuickSortRev(double?[,] arr) {
       double?[] arrForSort = GlueArr(arr);
+      iters[3] = 0;
 
       var stopWatch = new Stopwatch();
 
@@ -263,6 +291,8 @@ namespace sem2_lab4 {
           arr[pivot] = arr[index];
           arr[index] = temp;
         }
+
+        ++iters[3];
       }
 
       ++pivot;
@@ -276,6 +306,7 @@ namespace sem2_lab4 {
 
     public static double?[,] BogoSort(double?[,] arr) {
       double?[] arrForSort = GlueArr(arr);
+      iters[4] = 0;
 
       var stopWatch = new Stopwatch();
 
@@ -294,6 +325,7 @@ namespace sem2_lab4 {
 
     public static double?[,] BogoSortRev(double?[,] arr) {
       double?[] arrForSort = GlueArr(arr);
+      iters[4] = 0;
 
       var stopWatch = new Stopwatch();
 
@@ -334,19 +366,23 @@ namespace sem2_lab4 {
 
         arr[index] = arr[arrCount];
         arr[arrCount] = temp;
+
+        ++iters[4];
       }
 
       return arr;
     }
 
     public static double?[] GlueArr(double?[,] arr) {
-      double?[] newArr = new double?[arr.Length];
+      double?[] newArr = new double?[countValue];
 
       int newArrIndex = default;
       for (int indexRow = 0; indexRow < arr.GetLength(0); ++indexRow) {
         for (int indexColumn = 0; indexColumn < arr.GetLength(1); ++indexColumn) {
-          newArr[newArrIndex] = arr[indexRow, indexColumn];
-          ++newArrIndex;
+          if (arr[indexRow, indexColumn] != null) {
+            newArr[newArrIndex] = arr[indexRow, indexColumn];
+            ++newArrIndex;
+          }
         }
       }
 
@@ -359,6 +395,14 @@ namespace sem2_lab4 {
         for (int indexColumn = 0; indexColumn < arr.GetLength(1); ++indexColumn) {
           arr[indexRow, indexColumn] = singleArr[newArrIndex];
           ++newArrIndex;
+
+          if (newArrIndex >= countValue) {
+            break;
+          }
+        }
+
+        if (newArrIndex >= countValue) {
+          break;
         }
       }
 
