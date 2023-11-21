@@ -426,9 +426,15 @@ namespace sem2_lab4 {
 
       arr = new double?[cells.Rows.Count, cells.Columns.Count];
 
+
+      
       for (int indexRow = 1; indexRow < cells.Rows.Count + 1; ++indexRow) {
         for (int indexColumn = 1; indexColumn < cells.Columns.Count + 1; ++indexColumn) {
-          arr[indexRow - 1, indexColumn - 1] = cells[indexRow, indexColumn].Value;
+          try {
+            arr[indexRow - 1, indexColumn - 1] = cells[indexRow, indexColumn].Value;
+          } catch {
+            label1.Text = $"Неверный формат данных в ячейке [{indexRow}, {indexColumn}]";
+          }
         }
       }
 

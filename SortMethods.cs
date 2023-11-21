@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
+using System.Collections;
 
 namespace sem2_lab4 {
   public static class SortMethods {
@@ -21,17 +23,51 @@ namespace sem2_lab4 {
       stopWatch.Start();
 
       double? temp;
-      for (int indexRow = 0; indexRow < arrForSort.Length; indexRow++) {
-        for (int indexColumn = indexRow + 1; indexColumn < arrForSort.Length; indexColumn++) {
-          if (arrForSort[indexRow] > arrForSort[indexColumn]) {
-            temp = arrForSort[indexRow];
-            arrForSort[indexRow] = arrForSort[indexColumn];
-            arrForSort[indexColumn] = temp;
-          }
 
-          ++iters[0];
+      bool flag = false;
+
+      for (int i = 0; i < arrForSort.Length; i++) {
+        for (int j = 0; j < arrForSort.Length - i - 1; j++) {
+          if (arrForSort[j] > arrForSort[j + 1]) {
+            temp = arrForSort[j];
+            arrForSort[j] = arrForSort[j + 1];
+            arrForSort[j + 1] = temp;
+
+            if (!flag) {
+              ++iters[0];
+
+              flag = true;
+            }
+          }
         }
+
+        if (flag == false) {
+          ++iters[0];
+
+          break;
+        }
+
+        flag = false;
       }
+      //while (sortPart < arrForSort.Length - 1) {
+      //  for (int indexColumn = indexRow + 1; indexColumn < arrForSort.Length - sortPart; indexColumn++) {
+      //    if (arrForSort[indexRow] > arrForSort[indexColumn]) {
+      //      temp = arrForSort[indexRow];
+      //      arrForSort[indexRow] = arrForSort[indexColumn];
+      //      arrForSort[indexColumn] = temp;
+
+      //      flag = true;
+
+      //      ++sortPart;
+      //    }
+
+      //    ++indexRow;
+      //  }
+
+      //  ++iters[0];
+
+      //  indexRow = 0;
+      //}
 
       stopWatch.Stop();
 
@@ -49,16 +85,31 @@ namespace sem2_lab4 {
       stopWatch.Start();
 
       double? temp;
-      for (int indexRow = 0; indexRow < arrForSort.Length; indexRow++) {
-        for (int indexColumn = indexRow + 1; indexColumn < arrForSort.Length; indexColumn++) {
-          if (arrForSort[indexRow] > arrForSort[indexColumn]) {
-            temp = arrForSort[indexRow];
-            arrForSort[indexRow] = arrForSort[indexColumn];
-            arrForSort[indexColumn] = temp;
-          }
 
-          ++iters[0];
+      bool flag = false;
+
+      for (int i = 0; i < arrForSort.Length; i++) {
+        for (int j = 0; j < arrForSort.Length - i - 1; j++) {
+          if (arrForSort[j] > arrForSort[j + 1]) {
+            temp = arrForSort[j];
+            arrForSort[j] = arrForSort[j + 1];
+            arrForSort[j + 1] = temp;
+
+            if (!flag) {
+              ++iters[0];
+
+              flag = true;
+            }
+          }
         }
+
+        if (flag == false) {
+          ++iters[0];
+
+          break;
+        }
+
+        flag = false;
       }
 
       stopWatch.Stop();
@@ -86,9 +137,9 @@ namespace sem2_lab4 {
           arrForSort[prevElement + 1] = arrForSort[prevElement];
           arrForSort[prevElement] = currElement;
           --prevElement;
-
-          ++iters[1];
         }
+
+        ++iters[1];
       }
 
       stopWatch.Stop();
@@ -103,10 +154,9 @@ namespace sem2_lab4 {
       iters[1] = 0;
 
       var stopWatch = new Stopwatch();
-
       stopWatch.Start();
 
-      for (int index = 1; index < arrForSort.Length; ++index) {
+      for(int index = 1; index < arrForSort.Length; ++index) {
         double? currElement = arrForSort[index];
         int prevElement = index - 1;
 
@@ -114,9 +164,9 @@ namespace sem2_lab4 {
           arrForSort[prevElement + 1] = arrForSort[prevElement];
           arrForSort[prevElement] = currElement;
           --prevElement;
-
-          ++iters[1];
         }
+
+        ++iters[1];
       }
 
       stopWatch.Stop();
@@ -183,6 +233,8 @@ namespace sem2_lab4 {
 
         BubbleForShaker(ref arrForSort, rightBorder, leftBorder, ref exchange);
         ++leftBorder;
+
+        ++iters[2];
       } while (exchange);
 
       stopWatch.Stop();
@@ -207,8 +259,6 @@ namespace sem2_lab4 {
             b[i + 1] = temp;
             exchange = true;
           }
-
-          ++iters[2];
         }
       } else {
         for (int i = n; i > m; i--) {
@@ -218,8 +268,6 @@ namespace sem2_lab4 {
             b[i - 1] = temp;
             exchange = true;
           }
-
-          ++iters[2];
         }
       }
       return;
@@ -291,8 +339,6 @@ namespace sem2_lab4 {
           arr[pivot] = arr[index];
           arr[index] = temp;
         }
-
-        ++iters[3];
       }
 
       ++pivot;
@@ -300,6 +346,8 @@ namespace sem2_lab4 {
       temp = arr[pivot];
       arr[pivot] = arr[maxIndex];
       arr[maxIndex] = temp;
+
+      ++iters[3];
 
       return pivot;
     }
@@ -312,8 +360,16 @@ namespace sem2_lab4 {
 
       stopWatch.Start();
 
+      bool flag = false;
+
       while (!IsSorted(arrForSort)) {
         arrForSort = RandomPermutation(arrForSort);
+
+        flag = true;
+      }
+
+      if (flag == false) {
+        ++iters[4];
       }
 
       stopWatch.Stop();
@@ -331,8 +387,16 @@ namespace sem2_lab4 {
 
       stopWatch.Start();
 
+      bool flag = false;
+
       while (!IsSorted(arrForSort)) {
         arrForSort = RandomPermutation(arrForSort);
+
+        flag = true;
+      }
+
+      if (flag == false) {
+        ++iters[4];
       }
 
       stopWatch.Stop();
